@@ -1,0 +1,1653 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBT Online - SD Negeri 003 Batu Ampar</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+*{font-family:'Plus Jakarta Sans',sans-serif;margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;width:100%;overflow:hidden}
+.app-root{height:100%;width:100%;overflow:auto}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#f1f5f9}
+::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:3px}
+.sidebar-item{transition:all .2s}
+.sidebar-item:hover,.sidebar-item.active{background:rgba(255,255,255,.15);border-radius:8px}
+.card-hover{transition:all .25s;border:1px solid #e2e8f0}
+.card-hover:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.08);border-color:#cbd5e1}
+.fade-in{animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.btn-primary{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;padding:8px 20px;border-radius:8px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-danger{background:#ef4444;color:#fff;border:none;padding:8px 20px;border-radius:8px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-danger:hover{background:#dc2626}
+.btn-secondary{background:#f1f5f9;color:#334155;border:1px solid #e2e8f0;padding:8px 20px;border-radius:8px;font-weight:500;cursor:pointer;transition:all .2s}
+.btn-secondary:hover{background:#e2e8f0}
+.input-field{width:100%;padding:10px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:14px;transition:border-color .2s;outline:none;background:#fff}
+.input-field:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+select.input-field{cursor:pointer}
+.badge{display:inline-flex;align-items:center;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600}
+.badge-green{background:#dcfce7;color:#166534}
+.badge-blue{background:#dbeafe;color:#1e40af}
+.badge-yellow{background:#fef9c3;color:#854d0e}
+.badge-red{background:#fee2e2;color:#991b1b}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:50}
+.modal-box{background:#fff;border-radius:16px;padding:28px;max-width:600px;width:90%;max-height:85%;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.toast{position:fixed;top:20px;right:20px;padding:14px 24px;border-radius:10px;color:#fff;font-weight:600;z-index:100;animation:fadeIn .3s ease}
+.toast-success{background:#16a34a}
+.toast-error{background:#dc2626}
+.tab-btn{padding:8px 16px;border-radius:8px;font-weight:600;cursor:pointer;border:none;transition:all .2s;font-size:13px}
+.tab-btn.active{background:#2563eb;color:#fff}
+.tab-btn:not(.active){background:#f1f5f9;color:#64748b}
+.timer-bar{height:4px;background:linear-gradient(90deg,#22c55e,#eab308,#ef4444);border-radius:2px;transition:width .5s linear}
+.exam-option{border:2px solid #e2e8f0;border-radius:10px;padding:12px 16px;cursor:pointer;transition:all .2s}
+.exam-option:hover{border-color:#93c5fd;background:#eff6ff}
+.exam-option.selected{border-color:#2563eb;background:#eff6ff}
+.match-item{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:8px;padding:10px 14px;cursor:grab;transition:all .2s}
+.match-item:hover{border-color:#2563eb}
+table{width:100%;border-collapse:collapse}
+th{background:#f8fafc;font-weight:600;text-align:left;padding:12px;font-size:13px;color:#475569;border-bottom:2px solid #e2e8f0}
+td{padding:12px;font-size:14px;border-bottom:1px solid #f1f5f9;color:#334155}
+tr:hover td{background:#f8fafc}
+.check-box{width:18px;height:18px;border-radius:4px;border:2px solid #cbd5e1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.check-box.checked{background:#2563eb;border-color:#2563eb}
+.stat-card{background:#fff;border-radius:12px;padding:20px;border:1px solid #e2e8f0}
+.sidebar-gradient{background:linear-gradient(180deg,#1e3a5f 0%,#0f2942 100%)}
+.login-bg{background:linear-gradient(135deg,#f0f9ff 0%,#e0f2fe 50%,#f0f9ff 100%)}
+.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.question-nav-btn{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid #e2e8f0;transition:all .2s;background:#fff}
+.question-nav-btn.answered{background:#2563eb;color:#fff;border-color:#2563eb}
+.question-nav-btn.current{border-color:#f59e0b;box-shadow:0 0 0 2px rgba(245,158,11,.3)}
+</style>
+  <script>
+tailwind.config={theme:{extend:{}}}
+</script>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full w-full">
+  <div id="app" class="app-root bg-slate-50"></div>
+  <script>
+// ===== APP STATE =====
+const APP = {
+  currentUser: null, // {role:'admin'|'student'|'teacher', data:{...}}
+  currentPage: 'dashboard',
+  allData: [],
+  config: {},
+  defaultConfig: {
+    school_name: 'SD Negeri 003 Batu Ampar',
+    welcome_text: 'Selamat Datang di CBT Online',
+    bg_color: '#1e3a5f',
+    surface_color: '#ffffff',
+    text_color: '#1e293b',
+    primary_color: '#2563eb',
+    secondary_color: '#64748b'
+  }
+};
+
+const CLASSES = [];
+for(let i=1;i<=6;i++) for(const s of ['A','B','C']) CLASSES.push(`${i}${s}`);
+
+// Helper
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+function toast(msg,type='success'){
+  const t=document.createElement('div');
+  t.className=`toast toast-${type}`;
+  t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),2500);
+}
+function getByType(type){return APP.allData.filter(d=>d.type===type)}
+function escHtml(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+
+// ===== DATA SDK =====
+const dataHandler = {
+  onDataChanged(data) {
+    APP.allData = data;
+    if(APP.currentUser) renderApp();
+  }
+};
+
+// ===== ELEMENT SDK =====
+const defaultConfig = {...APP.defaultConfig};
+
+window.elementSdk.init({
+  defaultConfig,
+  onConfigChange: async(config)=>{
+    APP.config = config;
+    Object.assign(APP.defaultConfig, {
+      school_name: config.school_name || defaultConfig.school_name,
+      welcome_text: config.welcome_text || defaultConfig.welcome_text,
+      bg_color: config.bg_color || defaultConfig.bg_color,
+      surface_color: config.surface_color || defaultConfig.surface_color,
+      text_color: config.text_color || defaultConfig.text_color,
+      primary_color: config.primary_color || defaultConfig.primary_color,
+      secondary_color: config.secondary_color || defaultConfig.secondary_color
+    });
+    applyTheme();
+    // Update visible text
+    const sn = document.getElementById('sidebar-school-name');
+    if(sn) sn.textContent = APP.defaultConfig.school_name;
+    const lt = document.getElementById('login-title');
+    if(lt) lt.textContent = APP.defaultConfig.welcome_text;
+    const ls = document.getElementById('login-school');
+    if(ls) ls.textContent = APP.defaultConfig.school_name;
+  },
+  mapToCapabilities:(config)=>({
+    recolorables:[
+      {get:()=>config.bg_color||defaultConfig.bg_color, set:v=>{config.bg_color=v;window.elementSdk.setConfig({bg_color:v})}},
+      {get:()=>config.surface_color||defaultConfig.surface_color, set:v=>{config.surface_color=v;window.elementSdk.setConfig({surface_color:v})}},
+      {get:()=>config.text_color||defaultConfig.text_color, set:v=>{config.text_color=v;window.elementSdk.setConfig({text_color:v})}},
+      {get:()=>config.primary_color||defaultConfig.primary_color, set:v=>{config.primary_color=v;window.elementSdk.setConfig({primary_color:v})}},
+      {get:()=>config.secondary_color||defaultConfig.secondary_color, set:v=>{config.secondary_color=v;window.elementSdk.setConfig({secondary_color:v})}}
+    ],
+    borderables:[],
+    fontEditable:{get:()=>config.font_family||'Plus Jakarta Sans', set:v=>{config.font_family=v;window.elementSdk.setConfig({font_family:v})}},
+    fontSizeable:{get:()=>config.font_size||14, set:v=>{config.font_size=v;window.elementSdk.setConfig({font_size:v})}}
+  }),
+  mapToEditPanelValues:(config)=>new Map([
+    ['school_name', config.school_name||defaultConfig.school_name],
+    ['welcome_text', config.welcome_text||defaultConfig.welcome_text]
+  ])
+});
+
+function applyTheme(){
+  const c = APP.defaultConfig;
+  document.documentElement.style.setProperty('--bg', c.bg_color);
+  document.documentElement.style.setProperty('--surface', c.surface_color);
+  document.documentElement.style.setProperty('--text', c.text_color);
+  document.documentElement.style.setProperty('--primary', c.primary_color);
+  document.documentElement.style.setProperty('--secondary', c.secondary_color);
+  // Update sidebar
+  const sb = document.querySelector('.sidebar-gradient');
+  if(sb) sb.style.background = `linear-gradient(180deg,${c.bg_color} 0%,${adjustColor(c.bg_color,-.2)} 100%)`;
+  // Update buttons
+  document.querySelectorAll('.btn-primary').forEach(b=>{
+    b.style.background = `linear-gradient(135deg,${c.primary_color},${adjustColor(c.primary_color,-.1)})`;
+  });
+}
+function adjustColor(hex,amt){
+  let r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  r=Math.max(0,Math.min(255,r+Math.round(r*amt)));
+  g=Math.max(0,Math.min(255,g+Math.round(g*amt)));
+  b=Math.max(0,Math.min(255,b+Math.round(b*amt)));
+  return `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`;
+}
+
+// ===== INIT =====
+(async()=>{
+  const r = await window.dataSdk.init(dataHandler);
+  if(!r.isOk) console.error('Data SDK init failed');
+  renderLogin();
+})();
+
+// ===== LOGIN PAGE =====
+function renderLogin(){
+  APP.currentUser = null;
+  const app = document.getElementById('app');
+  app.innerHTML = `
+  <div class="login-bg" style="height:100%;display:flex;align-items:center;justify-content:center;padding:20px">
+    <div style="background:#fff;border-radius:20px;padding:40px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.08)">
+      <div style="text-align:center;margin-bottom:32px">
+        <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#1e3a5f,#2563eb);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+          <i data-lucide="graduation-cap" style="color:#fff;width:32px;height:32px"></i>
+        </div>
+        <h1 id="login-title" style="font-size:22px;font-weight:800;color:#1e293b;margin-bottom:4px">${escHtml(APP.defaultConfig.welcome_text)}</h1>
+        <p id="login-school" style="font-size:14px;color:#64748b">${escHtml(APP.defaultConfig.school_name)}</p>
+        <p style="font-size:11px;color:#94a3b8;margin-top:4px">📋 Sistem Ujian Berbasis Komputer (Demo)</p>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:24px" id="login-tabs">
+        <button class="tab-btn active" onclick="switchLoginTab('admin')">Admin</button>
+        <button class="tab-btn" onclick="switchLoginTab('student')">Siswa</button>
+        <button class="tab-btn" onclick="switchLoginTab('teacher')">Guru</button>
+      </div>
+      <div id="login-form-area"></div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+  switchLoginTab('admin');
+}
+
+function switchLoginTab(tab){
+  document.querySelectorAll('#login-tabs .tab-btn').forEach((b,i)=>{
+    b.classList.toggle('active', ['admin','student','teacher'][i]===tab);
+  });
+  const area = document.getElementById('login-form-area');
+  if(tab==='admin'){
+    area.innerHTML=`
+      <div><label style="font-size:13px;font-weight:600;color:#475569">Username</label>
+      <input class="input-field" id="admin-user" placeholder="admin" style="margin-top:4px;margin-bottom:12px"></div>
+      <div><label style="font-size:13px;font-weight:600;color:#475569">Password</label>
+      <div style="position:relative;margin-top:4px">
+        <input class="input-field" id="admin-pass" type="password" placeholder="admin" style="margin-bottom:20px;padding-right:40px">
+        <button style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#94a3b8;display:flex;align-items:center" onclick="togglePasswordVisibility('admin-pass')">
+          <i data-lucide="eye" style="width:18px;height:18px"></i>
+        </button>
+      </div></div>
+      <button class="btn-primary" style="width:100%;padding:12px" onclick="loginAdmin()">Masuk sebagai Admin</button>`;
+  } else if(tab==='student'){
+    area.innerHTML=`
+      <div><label style="font-size:13px;font-weight:600;color:#475569">NIS (Nomor Induk Siswa)</label>
+      <input class="input-field" id="stu-nis" placeholder="Masukkan NIS" style="margin-top:4px;margin-bottom:12px"></div>
+      <div><label style="font-size:13px;font-weight:600;color:#475569">Password</label>
+      <div style="position:relative;margin-top:4px">
+        <input class="input-field" id="stu-pass" type="password" placeholder="Masukkan password" style="margin-bottom:20px;padding-right:40px">
+        <button style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#94a3b8;display:flex;align-items:center" onclick="togglePasswordVisibility('stu-pass')">
+          <i data-lucide="eye" style="width:18px;height:18px"></i>
+        </button>
+      </div></div>
+      <button class="btn-primary" style="width:100%;padding:12px" onclick="loginStudent()">Masuk sebagai Siswa</button>`;
+  } else {
+    area.innerHTML=`
+      <div><label style="font-size:13px;font-weight:600;color:#475569">NIP</label>
+      <input class="input-field" id="teacher-nip" placeholder="Masukkan NIP" style="margin-top:4px;margin-bottom:12px"></div>
+      <div><label style="font-size:13px;font-weight:600;color:#475569">Password</label>
+      <div style="position:relative;margin-top:4px">
+        <input class="input-field" id="teacher-pass" type="password" placeholder="Masukkan password" style="margin-bottom:20px;padding-right:40px">
+        <button style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#94a3b8;display:flex;align-items:center" onclick="togglePasswordVisibility('teacher-pass')">
+          <i data-lucide="eye" style="width:18px;height:18px"></i>
+        </button>
+      </div></div>
+      <button class="btn-primary" style="width:100%;padding:12px" onclick="loginTeacher()">Masuk sebagai Guru</button>`;
+  }
+  lucide.createIcons();
+}
+
+function togglePasswordVisibility(fieldId){
+  const field = document.getElementById(fieldId);
+  if(field.type==='password'){
+    field.type='text';
+  } else {
+    field.type='password';
+  }
+  lucide.createIcons();
+}
+
+// Admin credentials stored in memory (demo)
+let adminCreds = {username:'admin', password:'admin', display_name:'Administrator'};
+
+function loginAdmin(){
+  const u=document.getElementById('admin-user').value.trim();
+  const p=document.getElementById('admin-pass').value.trim();
+  // Check if there's a saved admin profile
+  const adminProfiles = getByType('admin_profile');
+  if(adminProfiles.length>0){
+    const ap = adminProfiles[0];
+    adminCreds.username = ap.username || 'admin';
+    adminCreds.password = ap.name || 'admin'; // using name field for password
+    adminCreds.display_name = ap.admin_display_name || 'Administrator';
+  }
+  if(u===adminCreds.username && p===adminCreds.password){
+    APP.currentUser={role:'admin',data:{name:adminCreds.display_name}};
+    APP.currentPage='dashboard';
+    renderApp();
+  } else {
+    toast('Username atau password salah!','error');
+  }
+}
+function loginStudent(){
+  const nis=document.getElementById('stu-nis').value.trim();
+  const password=document.getElementById('stu-pass').value.trim();
+  if(!nis||!password){toast('Isi NIS dan Password!','error');return}
+  const students = getByType('student');
+  const found = students.find(s=>s.nis===nis && s.username===password);
+  if(found){
+    APP.currentUser={role:'student',data:found};
+    APP.currentPage='student-exams';
+    renderApp();
+  } else {
+    toast('NIS atau password salah!','error');
+  }
+}
+function loginTeacher(){
+  const nip=document.getElementById('teacher-nip').value.trim();
+  const password=document.getElementById('teacher-pass').value.trim();
+  if(!nip||!password){toast('Isi NIP dan Password!','error');return}
+  const teachers = getByType('teacher');
+  const found = teachers.find(t=>t.teacher_nip===nip && t.username===password);
+  if(found){
+    APP.currentUser={role:'teacher',data:found};
+    APP.currentPage='teacher-dashboard';
+    renderApp();
+  } else {
+    toast('NIP atau password salah!','error');
+  }
+}
+
+// ===== MAIN APP RENDER =====
+function renderApp(){
+  const app = document.getElementById('app');
+  if(APP.currentUser.role==='student'){renderStudentApp();return;}
+  if(APP.currentUser.role==='teacher'){renderTeacherApp();return;}
+  
+  const pages = [
+    {id:'dashboard',icon:'layout-dashboard',label:'Dashboard'},
+    {id:'students',icon:'users',label:'Data Siswa'},
+    {id:'teachers',icon:'user-check',label:'Data Guru'},
+    {id:'subjects',icon:'book-open',label:'Mata Pelajaran'},
+    {id:'exams',icon:'file-text',label:'Bank Soal'},
+    {id:'results',icon:'bar-chart-3',label:'Hasil Ujian'},
+    {id:'profile',icon:'settings',label:'Profil Admin'},
+  ];
+
+  app.innerHTML=`
+  <div style="display:flex;height:100%;width:100%">
+    <aside class="sidebar-gradient" style="width:240px;min-width:240px;padding:20px 12px;display:flex;flex-direction:column;color:#fff">
+      <div style="display:flex;align-items:center;gap:10px;padding:0 8px;margin-bottom:28px">
+        <div style="width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center">
+          <i data-lucide="graduation-cap" style="width:22px;height:22px"></i>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700" id="sidebar-school-name">${escHtml(APP.defaultConfig.school_name)}</div>
+          <div style="font-size:11px;opacity:.7">CBT Online</div>
+        </div>
+      </div>
+      <nav style="flex:1;display:flex;flex-direction:column;gap:4px" id="sidebar-nav">
+        ${pages.map(p=>`
+          <div class="sidebar-item ${APP.currentPage===p.id?'active':''}" style="display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;font-size:13px;font-weight:500" onclick="navigateTo('${p.id}')">
+            <i data-lucide="${p.icon}" style="width:18px;height:18px"></i>${p.label}
+          </div>
+        `).join('')}
+      </nav>
+      <div class="sidebar-item" style="display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;font-size:13px;font-weight:500;margin-top:8px" onclick="renderLogin()">
+        <i data-lucide="log-out" style="width:18px;height:18px"></i>Keluar
+      </div>
+    </aside>
+    <main style="flex:1;overflow-y:auto;padding:28px;background:#f8fafc" id="main-content"></main>
+  </div>`;
+  lucide.createIcons();
+  renderPage();
+}
+
+function navigateTo(page){
+  APP.currentPage=page;
+  // Update sidebar active
+  document.querySelectorAll('.sidebar-item').forEach(el=>{
+    el.classList.remove('active');
+  });
+  // Re-render just the main content
+  renderPage();
+  // Fix sidebar active state
+  const items = document.querySelectorAll('#sidebar-nav .sidebar-item');
+  const pages=['dashboard','students','teachers','subjects','exams','results','profile'];
+  const idx=pages.indexOf(page);
+  if(idx>=0 && items[idx]) items[idx].classList.add('active');
+}
+
+function renderPage(){
+  const mc = document.getElementById('main-content');
+  if(!mc)return;
+  switch(APP.currentPage){
+    case 'dashboard': renderDashboard(mc);break;
+    case 'students': renderStudents(mc);break;
+    case 'teachers': renderTeachers(mc);break;
+    case 'subjects': renderSubjects(mc);break;
+    case 'exams': renderExams(mc);break;
+    case 'results': renderResults(mc);break;
+    case 'profile': renderProfile(mc);break;
+    default: renderDashboard(mc);
+  }
+  lucide.createIcons();
+}
+
+// ===== DASHBOARD =====
+function renderDashboard(mc){
+  const students=getByType('student');
+  const exams=getByType('exam');
+  const results=getByType('result');
+  const teachers=getByType('teacher');
+  const subjects=getByType('subject');
+  mc.innerHTML=`
+  <div class="fade-in">
+    <h1 style="font-size:24px;font-weight:800;color:#1e293b;margin-bottom:4px">Dashboard</h1>
+    <p style="color:#64748b;font-size:14px;margin-bottom:24px">Selamat datang, ${escHtml(APP.currentUser.data.name)}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px">
+      ${statCard('users','Siswa',students.length,'#2563eb','#dbeafe')}
+      ${statCard('user-check','Guru',teachers.length,'#7c3aed','#ede9fe')}
+      ${statCard('book-open','Mapel',subjects.length,'#0891b2','#cffafe')}
+      ${statCard('file-text','Ujian',exams.length,'#ea580c','#ffedd5')}
+      ${statCard('bar-chart-3','Hasil',results.length,'#16a34a','#dcfce7')}
+    </div>
+    <div style="background:#fff;border-radius:12px;padding:20px;border:1px solid #e2e8f0">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;color:#1e293b">Ujian Terbaru</h3>
+      ${exams.length===0?'<p style="color:#94a3b8;font-size:14px">Belum ada ujian dibuat</p>':`
+      <table>
+        <thead><tr><th>Judul</th><th>Mapel</th><th>Kelas</th><th>Soal</th></tr></thead>
+        <tbody>${exams.slice(-5).reverse().map(e=>`
+          <tr>
+            <td style="font-weight:600">${escHtml(e.exam_title)}</td>
+            <td>${escHtml(e.subject)}</td>
+            <td>${escHtml(e.assigned_classes)}</td>
+            <td>${e.total_questions||0}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>`}
+    </div>
+  </div>`;
+}
+function statCard(icon,label,value,color,bg){
+  return `<div class="stat-card" style="display:flex;align-items:center;gap:14px">
+    <div style="width:48px;height:48px;border-radius:12px;background:${bg};display:flex;align-items:center;justify-content:center">
+      <i data-lucide="${icon}" style="width:24px;height:24px;color:${color}"></i>
+    </div>
+    <div><div style="font-size:24px;font-weight:800;color:#1e293b">${value}</div><div style="font-size:12px;color:#64748b;font-weight:500">${label}</div></div>
+  </div>`;
+}
+
+// ===== STUDENTS =====
+let studentSelectedIds = new Set();
+let studentFilter = '';
+
+function renderStudents(mc){
+  const students = getByType('student');
+  const filtered = studentFilter ? students.filter(s=>s.kelas===studentFilter) : students;
+  studentSelectedIds = new Set([...studentSelectedIds].filter(id=>filtered.some(s=>s.nis===id)));
+  
+  mc.innerHTML=`
+  <div class="fade-in">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+      <div>
+        <h1 style="font-size:24px;font-weight:800;color:#1e293b">Data Siswa</h1>
+        <p style="color:#64748b;font-size:14px">${students.length} siswa terdaftar</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn-primary" onclick="showAddStudentModal()"><i data-lucide="plus" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:4px"></i>Tambah Siswa</button>
+        <button class="btn-secondary" onclick="showImportModal()"><i data-lucide="upload" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:4px"></i>Import Excel</button>
+        ${studentSelectedIds.size>0?`<button class="btn-danger" onclick="deleteSelectedStudents()"><i data-lucide="trash-2" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:4px"></i>Hapus (${studentSelectedIds.size})</button>`:''}
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center">
+      <select class="input-field" style="width:auto" onchange="studentFilter=this.value;renderPage()">
+        <option value="">Semua Kelas</option>
+        ${CLASSES.map(c=>`<option value="${c}" ${studentFilter===c?'selected':''}>${c}</option>`).join('')}
+      </select>
+      <span style="font-size:13px;color:#64748b">${filtered.length} siswa ditampilkan</span>
+    </div>
+    <div style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow-x:auto">
+      <table>
+        <thead><tr>
+          <th style="width:40px"><div class="check-box ${studentSelectedIds.size===filtered.length&&filtered.length>0?'checked':''}" onclick="toggleAllStudents()"><i data-lucide="check" style="width:12px;height:12px;color:#fff;display:${studentSelectedIds.size===filtered.length&&filtered.length>0?'block':'none'}"></i></div></th>
+          <th>NIS</th><th>Nama</th><th>Kelas</th><th>Aksi</th>
+        </tr></thead>
+        <tbody>
+          ${filtered.length===0?`<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:40px">Belum ada data siswa</td></tr>`:''}
+          ${filtered.map(s=>`
+          <tr>
+            <td><div class="check-box ${studentSelectedIds.has(s.nis)?'checked':''}" onclick="toggleStudentSelect('${s.nis}')"><i data-lucide="check" style="width:12px;height:12px;color:#fff;display:${studentSelectedIds.has(s.nis)?'block':'none'}"></i></div></td>
+            <td style="font-weight:600">${escHtml(s.nis)}</td>
+            <td>${escHtml(s.name)}</td>
+            <td><span class="badge badge-blue">${escHtml(s.kelas)}</span></td>
+            <td>
+              <button class="btn-secondary" style="padding:4px 10px;font-size:12px" onclick="showEditStudentModal('${s.__backendId}')">Edit</button>
+            </td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function toggleStudentSelect(nis){
+  if(studentSelectedIds.has(nis)) studentSelectedIds.delete(nis); else studentSelectedIds.add(nis);
+  renderPage();
+}
+function toggleAllStudents(){
+  const students = getByType('student');
+  const filtered = studentFilter ? students.filter(s=>s.kelas===studentFilter) : students;
+  if(studentSelectedIds.size===filtered.length){studentSelectedIds.clear();}
+  else{filtered.forEach(s=>studentSelectedIds.add(s.nis));}
+  renderPage();
+}
+
+function showAddStudentModal(){
+  showModal(`
+    <h2 style="font-size:18px;font-weight:700;margin-bottom:20px">Tambah Siswa</h2>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">NIS</label><input class="input-field" id="m-nis" style="margin-top:4px"></div>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">Nama Lengkap</label><input class="input-field" id="m-name" style="margin-top:4px"></div>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">Password</label><input class="input-field" id="m-password" type="password" placeholder="Password untuk login" style="margin-top:4px"></div>
+    <div style="margin-bottom:20px"><label style="font-size:13px;font-weight:600;color:#475569">Kelas</label>
+      <select class="input-field" id="m-kelas" style="margin-top:4px">${CLASSES.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn-secondary" onclick="closeModal()">Batal</button>
+      <button class="btn-primary" id="m-save-btn" onclick="saveStudent()">Simpan</button>
+    </div>
+  `);
+}
+
+async function saveStudent(){
+  const nis=document.getElementById('m-nis').value.trim();
+  const name=document.getElementById('m-name').value.trim();
+  const password=document.getElementById('m-password').value.trim();
+  const kelas=document.getElementById('m-kelas').value;
+  if(!nis||!name||!password){toast('Isi semua field!','error');return}
+  if(APP.allData.length>=999){toast('Batas 999 data tercapai!','error');return}
+  const btn=document.getElementById('m-save-btn');
+  btn.disabled=true;btn.textContent='Menyimpan...';
+  const r=await window.dataSdk.create({type:'student',name,nis,kelas,username:password,subject:'',exam_title:'',exam_data:'',score:0,status:'',teacher_name:'',teacher_nip:'',teacher_subjects:'',timestamp:new Date().toISOString(),parent_id:'',duration:0,assigned_classes:'',total_questions:0,admin_display_name:'',points_per_question:0});
+  if(r.isOk){toast('Siswa berhasil ditambahkan');closeModal();}
+  else{toast('Gagal menyimpan!','error');btn.disabled=false;btn.textContent='Simpan';}
+}
+
+function showEditStudentModal(backendId){
+  const s = APP.allData.find(d=>d.__backendId===backendId);
+  if(!s)return;
+  showModal(`
+    <h2 style="font-size:18px;font-weight:700;margin-bottom:20px">Edit Siswa</h2>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">NIS</label><input class="input-field" id="m-nis" value="${escHtml(s.nis)}" style="margin-top:4px"></div>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">Nama Lengkap</label><input class="input-field" id="m-name" value="${escHtml(s.name)}" style="margin-top:4px"></div>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">Password</label><input class="input-field" id="m-password" type="password" placeholder="Kosongkan jika tidak ingin mengubah" style="margin-top:4px"></div>
+    <div style="margin-bottom:20px"><label style="font-size:13px;font-weight:600;color:#475569">Kelas</label>
+      <select class="input-field" id="m-kelas" style="margin-top:4px">${CLASSES.map(c=>`<option value="${c}" ${s.kelas===c?'selected':''}>${c}</option>`).join('')}</select>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn-secondary" onclick="closeModal()">Batal</button>
+      <button class="btn-primary" id="m-save-btn" onclick="updateStudent('${backendId}')">Simpan</button>
+    </div>
+  `);
+}
+
+async function updateStudent(backendId){
+  const s = APP.allData.find(d=>d.__backendId===backendId);
+  if(!s)return;
+  const btn=document.getElementById('m-save-btn');
+  btn.disabled=true;btn.textContent='Menyimpan...';
+  const password=document.getElementById('m-password').value.trim();
+  const updated={...s,nis:document.getElementById('m-nis').value.trim(),name:document.getElementById('m-name').value.trim(),kelas:document.getElementById('m-kelas').value};
+  if(password) updated.username=password;
+  const r=await window.dataSdk.update(updated);
+  if(r.isOk){toast('Data siswa diperbarui');closeModal();}
+  else{toast('Gagal memperbarui!','error');btn.disabled=false;btn.textContent='Simpan';}
+}
+
+async function deleteSelectedStudents(){
+  if(studentSelectedIds.size===0)return;
+  // Inline confirm
+  showModal(`
+    <h2 style="font-size:18px;font-weight:700;margin-bottom:12px">Hapus ${studentSelectedIds.size} Siswa?</h2>
+    <p style="color:#64748b;font-size:14px;margin-bottom:20px">Data yang dihapus tidak dapat dikembalikan.</p>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn-secondary" onclick="closeModal()">Batal</button>
+      <button class="btn-danger" id="m-del-btn" onclick="confirmDeleteStudents()">Ya, Hapus</button>
+    </div>
+  `);
+}
+async function confirmDeleteStudents(){
+  const btn=document.getElementById('m-del-btn');
+  btn.disabled=true;btn.textContent='Menghapus...';
+  const students=getByType('student').filter(s=>studentSelectedIds.has(s.nis));
+  for(const s of students){await window.dataSdk.delete(s);}
+  studentSelectedIds.clear();
+  toast(`${students.length} siswa dihapus`);
+  closeModal();
+}
+
+// ===== IMPORT EXCEL =====
+function showImportModal(){
+  showModal(`
+    <h2 style="font-size:18px;font-weight:700;margin-bottom:12px">Import Siswa dari Excel</h2>
+    <p style="color:#64748b;font-size:14px;margin-bottom:8px">Format CSV (pisahkan dengan koma):</p>
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-family:monospace;font-size:13px;margin-bottom:12px;color:#334155">
+      NIS,Nama,Password,Kelas<br>
+      001,Ahmad Rizky,pass123,6A<br>
+      002,Siti Aisyah,pass456,6B<br>
+      003,Budi Santoso,pass789,5C
+    </div>
+    <p style="font-size:12px;color:#94a3b8;margin-bottom:12px">Kelas yang valid: 1A-6C. Salin data dari Excel lalu tempel di bawah.</p>
+    <textarea class="input-field" id="m-csv" rows="8" placeholder="Tempel data CSV di sini..." style="font-family:monospace;font-size:13px"></textarea>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px">
+      <button class="btn-secondary" onclick="closeModal()">Batal</button>
+      <button class="btn-primary" id="m-import-btn" onclick="importCSV()">Import</button>
+    </div>
+  `);
+}
+
+async function importCSV(){
+  const csv = document.getElementById('m-csv').value.trim();
+  if(!csv){toast('Data kosong!','error');return}
+  const btn=document.getElementById('m-import-btn');
+  btn.disabled=true;btn.textContent='Mengimport...';
+  const lines = csv.split('\n').map(l=>l.trim()).filter(l=>l);
+  let start = 0;
+  // skip header
+  if(lines[0]&&lines[0].toLowerCase().includes('nis')) start=1;
+  let count=0;
+  const currentCount = APP.allData.length;
+  for(let i=start;i<lines.length;i++){
+    if(currentCount+count>=999){toast('Batas 999 data tercapai!','error');break;}
+    const parts = lines[i].split(',').map(p=>p.trim());
+    if(parts.length>=4){
+      const [nis,name,password,kelas]=parts;
+      if(nis&&name&&password&&CLASSES.includes(kelas)){
+        await window.dataSdk.create({type:'student',name,nis,kelas,username:password,subject:'',exam_title:'',exam_data:'',score:0,status:'',teacher_name:'',teacher_nip:'',teacher_subjects:'',timestamp:new Date().toISOString(),parent_id:'',duration:0,assigned_classes:'',total_questions:0,admin_display_name:'',points_per_question:0});
+        count++;
+      }
+    }
+  }
+  toast(`${count} siswa berhasil diimport`);
+  closeModal();
+}
+
+// ===== TEACHERS =====
+function renderTeachers(mc){
+  const teachers = getByType('teacher');
+  const subjects = getByType('subject');
+  mc.innerHTML=`
+  <div class="fade-in">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+      <div><h1 style="font-size:24px;font-weight:800;color:#1e293b">Data Guru</h1>
+      <p style="color:#64748b;font-size:14px">${teachers.length} guru terdaftar</p></div>
+      <button class="btn-primary" onclick="showAddTeacherModal()"><i data-lucide="plus" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:4px"></i>Tambah Guru</button>
+    </div>
+    <div style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow-x:auto">
+      <table>
+        <thead><tr><th>NIP</th><th>Nama</th><th>Mata Pelajaran</th><th>Aksi</th></tr></thead>
+        <tbody>
+          ${teachers.length===0?`<tr><td colspan="4" style="text-align:center;color:#94a3b8;padding:40px">Belum ada data guru</td></tr>`:''}
+          ${teachers.map(t=>`
+          <tr>
+            <td style="font-weight:600">${escHtml(t.teacher_nip)}</td>
+            <td>${escHtml(t.teacher_name)}</td>
+            <td>${(t.teacher_subjects||'').split(',').filter(Boolean).map(s=>`<span class="badge badge-blue" style="margin:2px">${escHtml(s)}</span>`).join('')||'<span style="color:#94a3b8">-</span>'}</td>
+            <td>
+              <button class="btn-secondary" style="padding:4px 10px;font-size:12px" onclick="showEditTeacherModal('${t.__backendId}')">Edit</button>
+              <button class="btn-danger" style="padding:4px 10px;font-size:12px" onclick="deleteRecord('${t.__backendId}')">Hapus</button>
+            </td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function showAddTeacherModal(){
+  const subjects = getByType('subject');
+  showModal(`
+    <h2 style="font-size:18px;font-weight:700;margin-bottom:20px">Tambah Guru</h2>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">NIP</label><input class="input-field" id="m-nip" style="margin-top:4px"></div>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">Nama Lengkap</label><input class="input-field" id="m-tname" style="margin-top:4px"></div>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">Password</label><input class="input-field" id="m-tpass" type="password" placeholder="Password untuk login" style="margin-top:4px"></div>
+    <div style="margin-bottom:20px"><label style="font-size:13px;font-weight:600;color:#475569">Mata Pelajaran (pilih beberapa)</label>
+      <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px" id="m-subj-list">
+        ${subjects.map(s=>`<label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer;background:#f1f5f9;padding:6px 12px;border-radius:8px">
+          <input type="checkbox" value="${escHtml(s.subject)}" class="m-subj-cb"> ${escHtml(s.subject)}</label>`).join('')}
+        ${subjects.length===0?'<p style="color:#94a3b8;font-size:13px">Tambahkan mata pelajaran terlebih dahulu</p>':''}
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn-secondary" onclick="closeModal()">Batal</button>
+      <button class="btn-primary" id="m-save-btn" onclick="saveTeacher()">Simpan</button>
+    </div>
+  `);
+}
+
+async function saveTeacher(){
+  const nip=document.getElementById('m-nip').value.trim();
+  const name=document.getElementById('m-tname').value.trim();
+  const password=document.getElementById('m-tpass').value.trim();
+  if(!nip||!name||!password){toast('Isi semua field!','error');return}
+  const cbs=[...document.querySelectorAll('.m-subj-cb:checked')].map(cb=>cb.value);
+  if(APP.allData.length>=999){toast('Batas 999 data tercapai!','error');return}
+  const btn=document.getElementById('m-save-btn');
+  btn.disabled=true;btn.textContent='Menyimpan...';
+  const r=await window.dataSdk.create({type:'teacher',name:'',nis:'',kelas:'',username:password,subject:'',exam_title:'',exam_data:'',score:0,status:'',teacher_name:name,teacher_nip:nip,teacher_subjects:cbs.join(','),timestamp:new Date().toISOString(),parent_id:'',duration:0,assigned_classes:'',total_questions:0,admin_display_name:'',points_per_question:0});
+  if(r.isOk){toast('Guru berhasil ditambahkan');closeModal();}
+  else{toast('Gagal menyimpan!','error');btn.disabled=false;btn.textContent='Simpan';}
+}
+
+function showEditTeacherModal(bid){
+  const t=APP.allData.find(d=>d.__backendId===bid);
+  if(!t)return;
+  const subjects=getByType('subject');
+  const teacherSubjs=(t.teacher_subjects||'').split(',');
+  showModal(`
+    <h2 style="font-size:18px;font-weight:700;margin-bottom:20px">Edit Guru</h2>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">NIP</label><input class="input-field" id="m-nip" value="${escHtml(t.teacher_nip)}" style="margin-top:4px"></div>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">Nama</label><input class="input-field" id="m-tname" value="${escHtml(t.teacher_name)}" style="margin-top:4px"></div>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">Password</label><input class="input-field" id="m-tpass" type="password" placeholder="Kosongkan jika tidak ingin mengubah" style="margin-top:4px"></div>
+    <div style="margin-bottom:20px"><label style="font-size:13px;font-weight:600;color:#475569">Mata Pelajaran</label>
+      <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px">
+        ${subjects.map(s=>`<label style="display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer;background:#f1f5f9;padding:6px 12px;border-radius:8px">
+          <input type="checkbox" value="${escHtml(s.subject)}" class="m-subj-cb" ${teacherSubjs.includes(s.subject)?'checked':''}> ${escHtml(s.subject)}</label>`).join('')}
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn-secondary" onclick="closeModal()">Batal</button>
+      <button class="btn-primary" id="m-save-btn" onclick="updateTeacher('${bid}')">Simpan</button>
+    </div>
+  `);
+}
+
+async function updateTeacher(bid){
+  const t=APP.allData.find(d=>d.__backendId===bid);
+  if(!t)return;
+  const btn=document.getElementById('m-save-btn');
+  btn.disabled=true;btn.textContent='Menyimpan...';
+  const password=document.getElementById('m-tpass').value.trim();
+  const cbs=[...document.querySelectorAll('.m-subj-cb:checked')].map(cb=>cb.value);
+  const updated={...t,teacher_nip:document.getElementById('m-nip').value.trim(),teacher_name:document.getElementById('m-tname').value.trim(),teacher_subjects:cbs.join(',')};
+  if(password) updated.username=password;
+  const r=await window.dataSdk.update(updated);
+  if(r.isOk){toast('Data guru diperbarui');closeModal();}
+  else{toast('Gagal!','error');btn.disabled=false;btn.textContent='Simpan';}
+}
+
+async function deleteRecord(bid){
+  const rec=APP.allData.find(d=>d.__backendId===bid);
+  if(!rec)return;
+  showModal(`
+    <h2 style="font-size:18px;font-weight:700;margin-bottom:12px">Hapus Data?</h2>
+    <p style="color:#64748b;font-size:14px;margin-bottom:20px">Data yang dihapus tidak dapat dikembalikan.</p>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn-secondary" onclick="closeModal()">Batal</button>
+      <button class="btn-danger" id="m-del-btn" onclick="confirmDelete('${bid}')">Ya, Hapus</button>
+    </div>
+  `);
+}
+async function confirmDelete(bid){
+  const rec=APP.allData.find(d=>d.__backendId===bid);
+  if(!rec)return;
+  const btn=document.getElementById('m-del-btn');
+  btn.disabled=true;btn.textContent='Menghapus...';
+  await window.dataSdk.delete(rec);
+  toast('Data dihapus');closeModal();
+}
+
+// ===== SUBJECTS =====
+function renderSubjects(mc){
+  const subjects = getByType('subject');
+  mc.innerHTML=`
+  <div class="fade-in">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+      <div><h1 style="font-size:24px;font-weight:800;color:#1e293b">Mata Pelajaran</h1></div>
+      <button class="btn-primary" onclick="showAddSubjectModal()"><i data-lucide="plus" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:4px"></i>Tambah Mapel</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">
+      ${subjects.map(s=>`
+      <div class="card-hover" style="background:#fff;border-radius:12px;padding:20px;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:10px;background:#dbeafe;display:flex;align-items:center;justify-content:center">
+            <i data-lucide="book-open" style="width:20px;height:20px;color:#2563eb"></i>
+          </div>
+          <span style="font-weight:600;font-size:15px;color:#1e293b">${escHtml(s.subject)}</span>
+        </div>
+        <button style="background:none;border:none;cursor:pointer;color:#ef4444" onclick="deleteRecord('${s.__backendId}')"><i data-lucide="trash-2" style="width:16px;height:16px"></i></button>
+      </div>`).join('')}
+      ${subjects.length===0?'<p style="color:#94a3b8;font-size:14px;grid-column:1/-1;text-align:center;padding:40px">Belum ada mata pelajaran</p>':''}
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function showAddSubjectModal(){
+  showModal(`
+    <h2 style="font-size:18px;font-weight:700;margin-bottom:20px">Tambah Mata Pelajaran</h2>
+    <div style="margin-bottom:20px"><label style="font-size:13px;font-weight:600;color:#475569">Nama Mata Pelajaran</label><input class="input-field" id="m-subj" style="margin-top:4px" placeholder="cth: Matematika"></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn-secondary" onclick="closeModal()">Batal</button>
+      <button class="btn-primary" id="m-save-btn" onclick="saveSubject()">Simpan</button>
+    </div>
+  `);
+}
+async function saveSubject(){
+  const subj=document.getElementById('m-subj').value.trim();
+  if(!subj){toast('Isi nama mapel!','error');return}
+  if(APP.allData.length>=999){toast('Batas data tercapai!','error');return}
+  const btn=document.getElementById('m-save-btn');
+  btn.disabled=true;btn.textContent='Menyimpan...';
+  const r=await window.dataSdk.create({type:'subject',name:'',nis:'',kelas:'',username:'',subject:subj,exam_title:'',exam_data:'',score:0,status:'',teacher_name:'',teacher_nip:'',teacher_subjects:'',timestamp:new Date().toISOString(),parent_id:'',duration:0,assigned_classes:'',total_questions:0,admin_display_name:'',points_per_question:0});
+  if(r.isOk){toast('Mapel ditambahkan');closeModal();}
+  else{toast('Gagal!','error');btn.disabled=false;btn.textContent='Simpan';}
+}
+
+// ===== EXAMS (BANK SOAL) =====
+function renderExams(mc){
+  const exams = getByType('exam');
+  mc.innerHTML=`
+  <div class="fade-in">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+      <div><h1 style="font-size:24px;font-weight:800;color:#1e293b">Bank Soal & Ujian</h1></div>
+      <button class="btn-primary" onclick="showCreateExamModal()"><i data-lucide="plus" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:4px"></i>Buat Ujian Baru</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
+      ${exams.map(e=>{
+        const questions = JSON.parse(e.exam_data||'[]');
+        const classes = (e.assigned_classes||'').split(',').filter(Boolean);
+        return `
+        <div class="card-hover" style="background:#fff;border-radius:12px;padding:20px">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px">
+            <div>
+              <h3 style="font-weight:700;font-size:16px;color:#1e293b">${escHtml(e.exam_title)}</h3>
+              <span class="badge badge-blue" style="margin-top:4px">${escHtml(e.subject)}</span>
+            </div>
+            <div style="display:flex;gap:4px">
+              <button style="background:none;border:none;cursor:pointer;color:#2563eb" onclick="editExam('${e.__backendId}')"><i data-lucide="edit" style="width:16px;height:16px"></i></button>
+              <button style="background:none;border:none;cursor:pointer;color:#ef4444" onclick="deleteRecord('${e.__backendId}')"><i data-lucide="trash-2" style="width:16px;height:16px"></i></button>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;font-size:13px;color:#64748b;margin-bottom:8px">
+            <span><i data-lucide="file-text" style="width:14px;height:14px;display:inline;vertical-align:middle"></i> ${questions.length} soal</span>
+            <span><i data-lucide="clock" style="width:14px;height:14px;display:inline;vertical-align:middle"></i> ${e.duration} menit</span>
+            <span><i data-lucide="star" style="width:14px;height:14px;display:inline;vertical-align:middle"></i> ${e.points_per_question} poin/soal</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px">
+            ${classes.map(c=>`<span class="badge badge-green" style="font-size:11px">${c}</span>`).join('')}
+            ${classes.length===0?'<span style="color:#94a3b8;font-size:12px">Belum ada kelas</span>':''}
+          </div>
+        </div>`;
+      }).join('')}
+      ${exams.length===0?'<p style="color:#94a3b8;font-size:14px;grid-column:1/-1;text-align:center;padding:40px">Belum ada ujian dibuat</p>':''}
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+// Exam builder state
+let examBuilder = {title:'',subject:'',duration:60,points:10,assignedClasses:[],questions:[]};
+
+function showCreateExamModal(){
+  examBuilder = {title:'',subject:'',duration:60,points:10,assignedClasses:[],questions:[]};
+  renderExamBuilder();
+}
+
+function editExam(bid){
+  const e = APP.allData.find(d=>d.__backendId===bid);
+  if(!e)return;
+  examBuilder = {
+    editId:bid,
+    title:e.exam_title,
+    subject:e.subject,
+    duration:e.duration,
+    points:e.points_per_question,
+    assignedClasses:(e.assigned_classes||'').split(',').filter(Boolean),
+    questions:JSON.parse(e.exam_data||'[]')
+  };
+  renderExamBuilder();
+}
+
+function renderExamBuilder(){
+  const subjects = getByType('subject');
+  showModal(`
+    <div style="max-width:100%">
+      <h2 style="font-size:18px;font-weight:700;margin-bottom:20px">${examBuilder.editId?'Edit':'Buat'} Ujian</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div><label style="font-size:13px;font-weight:600;color:#475569">Judul Ujian</label><input class="input-field" id="m-exam-title" value="${escHtml(examBuilder.title)}" style="margin-top:4px" onchange="examBuilder.title=this.value"></div>
+        <div><label style="font-size:13px;font-weight:600;color:#475569">Mata Pelajaran</label>
+          <select class="input-field" id="m-exam-subj" style="margin-top:4px" onchange="examBuilder.subject=this.value">
+            <option value="">Pilih</option>
+            ${subjects.map(s=>`<option value="${s.subject}" ${examBuilder.subject===s.subject?'selected':''}>${s.subject}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <div><label style="font-size:13px;font-weight:600;color:#475569">Durasi (menit)</label><input class="input-field" type="number" id="m-exam-dur" value="${examBuilder.duration}" style="margin-top:4px" onchange="examBuilder.duration=+this.value"></div>
+        <div><label style="font-size:13px;font-weight:600;color:#475569">Poin per Soal</label><input class="input-field" type="number" id="m-exam-pts" value="${examBuilder.points}" style="margin-top:4px" onchange="examBuilder.points=+this.value"></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <label style="font-size:13px;font-weight:600;color:#475569">Kelas yang Ditugaskan</label>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+          ${CLASSES.map(c=>`<label style="display:flex;align-items:center;gap:3px;font-size:12px;cursor:pointer;background:${examBuilder.assignedClasses.includes(c)?'#dbeafe':'#f1f5f9'};padding:4px 10px;border-radius:6px;border:1px solid ${examBuilder.assignedClasses.includes(c)?'#93c5fd':'#e2e8f0'}">
+            <input type="checkbox" class="m-class-cb" value="${c}" ${examBuilder.assignedClasses.includes(c)?'checked':''} onchange="toggleExamClass('${c}')"> ${c}</label>`).join('')}
+        </div>
+      </div>
+      <hr style="border:none;border-top:1px solid #e2e8f0;margin:16px 0">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <h3 style="font-size:15px;font-weight:700;color:#1e293b">Daftar Soal (${examBuilder.questions.length})</h3>
+        <div style="display:flex;gap:4px;flex-wrap:wrap">
+          <button class="tab-btn active" onclick="addQuestion('pg')" style="font-size:11px;padding:4px 8px">+PG</button>
+          <button class="tab-btn" onclick="addQuestion('pgk')" style="font-size:11px;padding:4px 8px">+PG Kompleks</button>
+          <button class="tab-btn" onclick="addQuestion('bs')" style="font-size:11px;padding:4px 8px">+B/S</button>
+          <button class="tab-btn" onclick="addQuestion('jodoh')" style="font-size:11px;padding:4px 8px">+Jodohkan</button>
+          <button class="tab-btn" onclick="addQuestion('isian')" style="font-size:11px;padding:4px 8px">+Isian</button>
+        </div>
+      </div>
+      <div id="m-questions-list" style="max-height:300px;overflow-y:auto">
+        ${examBuilder.questions.length===0?'<p style="color:#94a3b8;font-size:13px;text-align:center;padding:20px">Belum ada soal. Klik tombol di atas untuk menambahkan.</p>':''}
+        ${examBuilder.questions.map((q,i)=>renderQuestionItem(q,i)).join('')}
+      </div>
+      <hr style="border:none;border-top:1px solid #e2e8f0;margin:16px 0">
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn-secondary" onclick="closeModal()">Batal</button>
+        <button class="btn-primary" id="m-save-exam-btn" onclick="saveExam()">Simpan Ujian</button>
+      </div>
+    </div>
+  `,800);
+}
+
+function renderQuestionItem(q,i){
+  const typeLabels={pg:'Pilihan Ganda',pgk:'PG Kompleks',bs:'Benar/Salah',jodoh:'Menjodohkan',isian:'Isian'};
+  const typeBadge={pg:'badge-blue',pgk:'badge-green',bs:'badge-yellow',jodoh:'badge-red',isian:'badge-blue'};
+  return `<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;margin-bottom:8px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-weight:700;font-size:14px;color:#1e293b">#${i+1}</span>
+        <span class="badge ${typeBadge[q.type]}">${typeLabels[q.type]}</span>
+      </div>
+      <div style="display:flex;gap:4px">
+        <button style="background:none;border:none;cursor:pointer;color:#2563eb;font-size:12px" onclick="editQuestion(${i})">Edit</button>
+        <button style="background:none;border:none;cursor:pointer;color:#ef4444;font-size:12px" onclick="removeQuestion(${i})">Hapus</button>
+      </div>
+    </div>
+    <p style="font-size:13px;color:#334155">${escHtml(q.text||'(Belum ada pertanyaan)')}</p>
+  </div>`;
+}
+
+function toggleExamClass(c){
+  const idx=examBuilder.assignedClasses.indexOf(c);
+  if(idx>=0) examBuilder.assignedClasses.splice(idx,1);
+  else examBuilder.assignedClasses.push(c);
+}
+
+function addQuestion(type){
+  let q = {type, text:'', answer:''};
+  if(type==='pg') q.options=['','','',''];
+  if(type==='pgk') q.options=['','','',''];
+  if(type==='bs') q.answer='benar';
+  if(type==='jodoh') q.pairs=[{left:'',right:''}];
+  if(type==='isian') q.answer='';
+  examBuilder.questions.push(q);
+  editQuestion(examBuilder.questions.length-1);
+}
+
+function removeQuestion(i){
+  examBuilder.questions.splice(i,1);
+  renderExamBuilder();
+}
+
+function editQuestion(idx){
+  const q = examBuilder.questions[idx];
+  const typeLabels={pg:'Pilihan Ganda',pgk:'PG Kompleks',bs:'Benar/Salah',jodoh:'Menjodohkan',isian:'Isian'};
+  let formHtml = `
+    <h2 style="font-size:18px;font-weight:700;margin-bottom:16px">Edit Soal #${idx+1} - ${typeLabels[q.type]}</h2>
+    <div style="margin-bottom:12px"><label style="font-size:13px;font-weight:600;color:#475569">Pertanyaan</label>
+    <textarea class="input-field" id="mq-text" rows="3" style="margin-top:4px">${escHtml(q.text)}</textarea></div>`;
+  
+  if(q.type==='pg'){
+    formHtml += `<label style="font-size:13px;font-weight:600;color:#475569">Pilihan Jawaban</label>`;
+    const labels = ['A','B','C','D'];
+    q.options.forEach((o,i)=>{
+      formHtml+=`<div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+        <input type="radio" name="mq-ans" value="${i}" ${q.answer==i?'checked':''}>
+        <span style="font-weight:600;font-size:13px">${labels[i]}.</span>
+        <input class="input-field mq-opt" value="${escHtml(o)}" style="flex:1">
+      </div>`;
+    });
+  } else if(q.type==='pgk'){
+    formHtml += `<label style="font-size:13px;font-weight:600;color:#475569">Pilihan (centang jawaban benar, bisa lebih dari 1)</label>`;
+    const labels = ['A','B','C','D'];
+    const answers = (q.answer||'').split(',');
+    q.options.forEach((o,i)=>{
+      formHtml+=`<div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+        <input type="checkbox" class="mq-ans-cb" value="${i}" ${answers.includes(''+i)?'checked':''}>
+        <span style="font-weight:600;font-size:13px">${labels[i]}.</span>
+        <input class="input-field mq-opt" value="${escHtml(o)}" style="flex:1">
+      </div>`;
+    });
+  } else if(q.type==='bs'){
+    formHtml += `<label style="font-size:13px;font-weight:600;color:#475569">Jawaban</label>
+    <div style="display:flex;gap:12px;margin-top:8px">
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="radio" name="mq-bs" value="benar" ${q.answer==='benar'?'checked':''}> Benar</label>
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="radio" name="mq-bs" value="salah" ${q.answer==='salah'?'checked':''}> Salah</label>
+    </div>`;
+  } else if(q.type==='jodoh'){
+    formHtml += `<label style="font-size:13px;font-weight:600;color:#475569">Pasangan (kiri - kanan)</label>`;
+    (q.pairs||[]).forEach((p,i)=>{
+      formHtml+=`<div style="display:flex;gap:8px;margin-top:6px;align-items:center">
+        <input class="input-field mq-left" value="${escHtml(p.left)}" placeholder="Kiri" style="flex:1">
+        <span style="color:#94a3b8">→</span>
+        <input class="input-field mq-right" value="${escHtml(p.right)}" placeholder="Kanan" style="flex:1">
+        <button style="background:none;border:none;cursor:pointer;color:#ef4444" onclick="removeQPair(${idx},${i})">✕</button>
+      </div>`;
+    });
+    formHtml+=`<button class="btn-secondary" style="margin-top:8px;font-size:12px;padding:4px 12px" onclick="addQPair(${idx})">+ Tambah Pasangan</button>`;
+  } else if(q.type==='isian'){
+    formHtml += `<div style="margin-top:4px"><label style="font-size:13px;font-weight:600;color:#475569">Kunci Jawaban</label>
+    <input class="input-field" id="mq-answer" value="${escHtml(q.answer)}" style="margin-top:4px"></div>`;
+  }
+
+  formHtml += `<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:20px">
+    <button class="btn-secondary" onclick="renderExamBuilder()">Kembali</button>
+    <button class="btn-primary" onclick="saveQuestion(${idx})">Simpan Soal</button>
+  </div>`;
+  
+  showModal(formHtml,600);
+}
+
+function addQPair(idx){
+  examBuilder.questions[idx].pairs.push({left:'',right:''});
+  editQuestion(idx);
+}
+function removeQPair(qIdx,pIdx){
+  examBuilder.questions[qIdx].pairs.splice(pIdx,1);
+  editQuestion(qIdx);
+}
+
+function saveQuestion(idx){
+  const q = examBuilder.questions[idx];
+  q.text = document.getElementById('mq-text').value;
+  
+  if(q.type==='pg'){
+    q.options=[...document.querySelectorAll('.mq-opt')].map(i=>i.value);
+    const checked=document.querySelector('input[name="mq-ans"]:checked');
+    q.answer=checked?checked.value:'0';
+  } else if(q.type==='pgk'){
+    q.options=[...document.querySelectorAll('.mq-opt')].map(i=>i.value);
+    q.answer=[...document.querySelectorAll('.mq-ans-cb:checked')].map(cb=>cb.value).join(',');
+  } else if(q.type==='bs'){
+    const checked=document.querySelector('input[name="mq-bs"]:checked');
+    q.answer=checked?checked.value:'benar';
+  } else if(q.type==='jodoh'){
+    const lefts=[...document.querySelectorAll('.mq-left')].map(i=>i.value);
+    const rights=[...document.querySelectorAll('.mq-right')].map(i=>i.value);
+    q.pairs=lefts.map((l,i)=>({left:l,right:rights[i]||''}));
+  } else if(q.type==='isian'){
+    q.answer=document.getElementById('mq-answer').value;
+  }
+  renderExamBuilder();
+}
+
+async function saveExam(){
+  examBuilder.title=document.getElementById('m-exam-title').value.trim();
+  examBuilder.subject=document.getElementById('m-exam-subj').value;
+  examBuilder.duration=+document.getElementById('m-exam-dur').value;
+  examBuilder.points=+document.getElementById('m-exam-pts').value;
+  
+  if(!examBuilder.title||!examBuilder.subject){toast('Isi judul dan mapel!','error');return}
+  
+  const btn=document.getElementById('m-save-exam-btn');
+  btn.disabled=true;btn.textContent='Menyimpan...';
+  
+  const data = {
+    type:'exam',name:'',nis:'',kelas:'',username:'',
+    subject:examBuilder.subject,
+    exam_title:examBuilder.title,
+    exam_data:JSON.stringify(examBuilder.questions),
+    score:0,
+    status:'active',
+    teacher_name:'',teacher_nip:'',teacher_subjects:'',
+    timestamp:new Date().toISOString(),
+    parent_id:uid(),
+    duration:examBuilder.duration,
+    assigned_classes:examBuilder.assignedClasses.join(','),
+    total_questions:examBuilder.questions.length,
+    admin_display_name:'',
+    points_per_question:examBuilder.points
+  };
+  
+  let r;
+  if(examBuilder.editId){
+    const existing=APP.allData.find(d=>d.__backendId===examBuilder.editId);
+    if(existing){
+      r=await window.dataSdk.update({...existing,...data,parent_id:existing.parent_id});
+    }
+  } else {
+    if(APP.allData.length>=999){toast('Batas data tercapai!','error');btn.disabled=false;btn.textContent='Simpan Ujian';return}
+    r=await window.dataSdk.create(data);
+  }
+  if(r&&r.isOk){toast('Ujian berhasil disimpan');closeModal();}
+  else{toast('Gagal menyimpan!','error');btn.disabled=false;btn.textContent='Simpan Ujian';}
+}
+
+// ===== RESULTS =====
+function renderResults(mc){
+  const results = getByType('result');
+  const exams = getByType('exam');
+  
+  mc.innerHTML=`
+  <div class="fade-in">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+      <div><h1 style="font-size:24px;font-weight:800;color:#1e293b">Hasil Ujian</h1>
+      <p style="color:#64748b;font-size:14px">${results.length} hasil</p></div>
+      ${results.length>0?`<button class="btn-primary" onclick="downloadResults()"><i data-lucide="download" style="width:16px;height:16px;display:inline;vertical-align:middle;margin-right:4px"></i>Download Excel</button>`:''}
+    </div>
+    <div style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow-x:auto">
+      <table>
+        <thead><tr><th>Siswa</th><th>NIS</th><th>Kelas</th><th>Ujian</th><th>Mapel</th><th>Skor</th><th>Status</th><th>Waktu</th></tr></thead>
+        <tbody>
+          ${results.length===0?`<tr><td colspan="8" style="text-align:center;color:#94a3b8;padding:40px">Belum ada hasil ujian</td></tr>`:''}
+          ${results.map(r=>`
+          <tr>
+            <td style="font-weight:600">${escHtml(r.name)}</td>
+            <td>${escHtml(r.nis)}</td>
+            <td><span class="badge badge-blue">${escHtml(r.kelas)}</span></td>
+            <td>${escHtml(r.exam_title)}</td>
+            <td>${escHtml(r.subject)}</td>
+            <td><span style="font-weight:700;color:${r.score>=70?'#16a34a':'#ef4444'}">${r.score}</span></td>
+            <td><span class="badge ${r.status==='selesai'?'badge-green':'badge-yellow'}">${escHtml(r.status)}</span></td>
+            <td style="font-size:12px;color:#64748b">${r.timestamp?new Date(r.timestamp).toLocaleString('id-ID'):'—'}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function downloadResults(){
+  const results = getByType('result');
+  let csv = 'Nama,NIS,Kelas,Ujian,Mata Pelajaran,Skor,Status,Waktu\n';
+  results.forEach(r=>{
+    csv+=`"${r.name}","${r.nis}","${r.kelas}","${r.exam_title}","${r.subject}",${r.score},"${r.status}","${r.timestamp?new Date(r.timestamp).toLocaleString('id-ID'):''}"\n`;
+  });
+  const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url; a.download='hasil_ujian.csv'; a.click();
+  URL.revokeObjectURL(url);
+  toast('File berhasil didownload');
+}
+
+// ===== ADMIN PROFILE =====
+function renderProfile(mc){
+  const adminProfiles = getByType('admin_profile');
+  const ap = adminProfiles.length>0?adminProfiles[0]:null;
+  const displayName = ap?ap.admin_display_name:adminCreds.display_name;
+  const username = ap?ap.username:adminCreds.username;
+  
+  mc.innerHTML=`
+  <div class="fade-in" style="max-width:500px">
+    <h1 style="font-size:24px;font-weight:800;color:#1e293b;margin-bottom:20px">Profil Admin</h1>
+    <div style="background:#fff;border-radius:12px;padding:24px;border:1px solid #e2e8f0">
+      <div style="margin-bottom:16px"><label style="font-size:13px;font-weight:600;color:#475569">Nama Tampilan</label>
+      <input class="input-field" id="p-name" value="${escHtml(displayName)}" style="margin-top:4px"></div>
+      <div style="margin-bottom:16px"><label style="font-size:13px;font-weight:600;color:#475569">Username</label>
+      <input class="input-field" id="p-user" value="${escHtml(username)}" style="margin-top:4px"></div>
+      <div style="margin-bottom:16px"><label style="font-size:13px;font-weight:600;color:#475569">Password Baru</label>
+      <input class="input-field" id="p-pass" type="password" placeholder="Kosongkan jika tidak ingin mengganti" style="margin-top:4px"></div>
+      <div style="margin-bottom:20px"><label style="font-size:13px;font-weight:600;color:#475569">Konfirmasi Password</label>
+      <input class="input-field" id="p-pass2" type="password" placeholder="Konfirmasi password baru" style="margin-top:4px"></div>
+      <button class="btn-primary" id="p-save-btn" onclick="saveProfile()">Simpan Perubahan</button>
+    </div>
+  </div>`;
+}
+
+async function saveProfile(){
+  const name=document.getElementById('p-name').value.trim();
+  const user=document.getElementById('p-user').value.trim();
+  const pass=document.getElementById('p-pass').value;
+  const pass2=document.getElementById('p-pass2').value;
+  if(!name||!user){toast('Isi nama dan username!','error');return}
+  if(pass&&pass!==pass2){toast('Password tidak cocok!','error');return}
+  
+  const btn=document.getElementById('p-save-btn');
+  btn.disabled=true;btn.textContent='Menyimpan...';
+  
+  const existing = getByType('admin_profile');
+  const profileData = {
+    type:'admin_profile',name:pass||adminCreds.password,nis:'',kelas:'',
+    username:user,subject:'',exam_title:'',exam_data:'',score:0,status:'',
+    teacher_name:'',teacher_nip:'',teacher_subjects:'',
+    timestamp:new Date().toISOString(),parent_id:'',duration:0,
+    assigned_classes:'',total_questions:0,admin_display_name:name,points_per_question:0
+  };
+  
+  let r;
+  if(existing.length>0){
+    r=await window.dataSdk.update({...existing[0],...profileData});
+  } else {
+    if(APP.allData.length>=999){toast('Batas data tercapai!','error');btn.disabled=false;btn.textContent='Simpan Perubahan';return}
+    r=await window.dataSdk.create(profileData);
+  }
+  if(r&&r.isOk){
+    adminCreds.username=user;
+    adminCreds.display_name=name;
+    if(pass) adminCreds.password=pass;
+    APP.currentUser.data.name=name;
+    toast('Profil berhasil diperbarui');
+  } else {
+    toast('Gagal menyimpan!','error');
+  }
+  btn.disabled=false;btn.textContent='Simpan Perubahan';
+}
+
+// ===== STUDENT APP =====
+let examState = null; // {examData, currentQ, answers, timer, startTime}
+
+function renderStudentApp(){
+  if(examState) { renderExamTaking(); return; }
+  const app = document.getElementById('app');
+  const student = APP.currentUser.data;
+  const exams = getByType('exam').filter(e=>{
+    const classes = (e.assigned_classes||'').split(',');
+    return classes.includes(student.kelas);
+  });
+  const results = getByType('result').filter(r=>r.nis===student.nis);
+  const completedExamIds = results.map(r=>r.parent_id);
+  
+  app.innerHTML=`
+  <div style="height:100%;display:flex;flex-direction:column">
+    <header style="background:#fff;border-bottom:1px solid #e2e8f0;padding:16px 24px;display:flex;justify-content:space-between;align-items:center">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#1e3a5f,#2563eb);display:flex;align-items:center;justify-content:center">
+          <i data-lucide="graduation-cap" style="width:20px;height:20px;color:#fff"></i>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:#1e293b">${escHtml(student.name)}</div>
+          <div style="font-size:12px;color:#64748b">Kelas ${escHtml(student.kelas)} • NIS: ${escHtml(student.nis)}</div>
+        </div>
+      </div>
+      <button class="btn-secondary" onclick="renderLogin()"><i data-lucide="log-out" style="width:14px;height:14px;display:inline;vertical-align:middle"></i> Keluar</button>
+    </header>
+    <main style="flex:1;overflow-y:auto;padding:24px;background:#f8fafc">
+      <div class="fade-in">
+        <h2 style="font-size:20px;font-weight:800;color:#1e293b;margin-bottom:4px">Ujian Tersedia</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:20px">${exams.length} ujian untuk kelasmu</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:28px">
+          ${exams.map(e=>{
+            const done = completedExamIds.includes(e.parent_id);
+            const questions=JSON.parse(e.exam_data||'[]');
+            return `
+            <div class="card-hover" style="background:#fff;border-radius:12px;padding:20px">
+              <div style="margin-bottom:12px">
+                <h3 style="font-weight:700;font-size:16px;color:#1e293b">${escHtml(e.exam_title)}</h3>
+                <span class="badge badge-blue" style="margin-top:4px">${escHtml(e.subject)}</span>
+                ${done?'<span class="badge badge-green" style="margin-left:4px">Selesai</span>':''}
+              </div>
+              <div style="display:flex;gap:12px;font-size:13px;color:#64748b;margin-bottom:12px">
+                <span>📝 ${questions.length} soal</span>
+                <span>⏱️ ${e.duration} menit</span>
+                <span>⭐ ${e.points_per_question} poin</span>
+              </div>
+              ${done?`<button class="btn-secondary" style="width:100%" disabled>Sudah Dikerjakan</button>`
+                    :`<button class="btn-primary" style="width:100%" onclick="startExam('${e.__backendId}')">Mulai Ujian</button>`}
+            </div>`;
+          }).join('')}
+          ${exams.length===0?'<p style="color:#94a3b8;text-align:center;grid-column:1/-1;padding:40px">Tidak ada ujian tersedia untuk kelasmu saat ini</p>':''}
+        </div>
+        
+        ${results.length>0?`
+        <h2 style="font-size:20px;font-weight:800;color:#1e293b;margin-bottom:12px">Hasil Ujianmu</h2>
+        <div style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow-x:auto">
+          <table>
+            <thead><tr><th>Ujian</th><th>Mapel</th><th>Skor</th><th>Waktu</th></tr></thead>
+            <tbody>${results.map(r=>`
+              <tr>
+                <td style="font-weight:600">${escHtml(r.exam_title)}</td>
+                <td>${escHtml(r.subject)}</td>
+                <td><span style="font-weight:700;color:${r.score>=70?'#16a34a':'#ef4444'};font-size:18px">${r.score}</span></td>
+                <td style="font-size:12px;color:#64748b">${r.timestamp?new Date(r.timestamp).toLocaleString('id-ID'):'—'}</td>
+              </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>`:''}
+      </div>
+    </main>
+  </div>`;
+  lucide.createIcons();
+}
+
+function startExam(bid){
+  const exam = APP.allData.find(d=>d.__backendId===bid);
+  if(!exam)return;
+  const questions = JSON.parse(exam.exam_data||'[]');
+  if(questions.length===0){toast('Ujian tidak memiliki soal!','error');return}
+  
+  // Save in-progress result
+  saveExamStatus(exam,'mengerjakan');
+  
+  examState = {
+    exam,
+    questions,
+    currentQ:0,
+    answers:new Array(questions.length).fill(null),
+    timeLeft:exam.duration*60,
+    startTime:Date.now()
+  };
+  examState.timer = setInterval(()=>{
+    examState.timeLeft--;
+    updateTimer();
+    if(examState.timeLeft<=0){
+      clearInterval(examState.timer);
+      submitExam();
+    }
+  },1000);
+  renderExamTaking();
+}
+
+async function saveExamStatus(exam,status){
+  if(APP.allData.length>=999) return;
+  // Check if there's already an in-progress result
+  const student = APP.currentUser.data;
+  const existing = getByType('result').find(r=>r.nis===student.nis && r.parent_id===exam.parent_id && r.status==='mengerjakan');
+  if(existing){
+    await window.dataSdk.update({...existing,status,timestamp:new Date().toISOString()});
+  } else if(status==='mengerjakan'){
+    await window.dataSdk.create({
+      type:'result',name:student.name,nis:student.nis,kelas:student.kelas,
+      username:'',subject:exam.subject,exam_title:exam.exam_title,
+      exam_data:'',score:0,status:'mengerjakan',
+      teacher_name:'',teacher_nip:'',teacher_subjects:'',
+      timestamp:new Date().toISOString(),parent_id:exam.parent_id,
+      duration:0,assigned_classes:'',total_questions:0,admin_display_name:'',points_per_question:0
+    });
+  }
+}
+
+function renderExamTaking(){
+  if(!examState)return;
+  const {exam,questions,currentQ,answers}=examState;
+  const q = questions[currentQ];
+  const app = document.getElementById('app');
+  
+  const minutes=Math.floor(examState.timeLeft/60);
+  const seconds=examState.timeLeft%60;
+  const pct=(examState.timeLeft/(exam.duration*60))*100;
+  
+  app.innerHTML=`
+  <div style="height:100%;display:flex;flex-direction:column">
+    <header style="background:#fff;border-bottom:1px solid #e2e8f0;padding:12px 24px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div>
+          <span style="font-weight:700;color:#1e293b">${escHtml(exam.exam_title)}</span>
+          <span class="badge badge-blue" style="margin-left:8px">${escHtml(exam.subject)}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span id="exam-timer" style="font-weight:700;font-size:18px;color:${examState.timeLeft<60?'#ef4444':'#1e293b'}">
+            ${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}
+          </span>
+          <button class="btn-danger" style="padding:6px 14px;font-size:13px" onclick="confirmSubmitExam()">Selesai</button>
+        </div>
+      </div>
+      <div style="background:#e2e8f0;border-radius:2px;height:4px">
+        <div class="timer-bar" id="timer-bar" style="width:${pct}%"></div>
+      </div>
+    </header>
+    <div style="flex:1;overflow-y:auto;display:flex">
+      <div style="flex:1;padding:24px;overflow-y:auto">
+        <div class="fade-in">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+            <span style="background:#1e3a5f;color:#fff;padding:4px 12px;border-radius:6px;font-size:13px;font-weight:700">Soal ${currentQ+1}/${questions.length}</span>
+            <span class="badge badge-blue">${{pg:'Pilihan Ganda',pgk:'PG Kompleks',bs:'Benar/Salah',jodoh:'Menjodohkan',isian:'Isian'}[q.type]}</span>
+            <span style="font-size:12px;color:#64748b">${exam.points_per_question} poin</span>
+          </div>
+          <p style="font-size:16px;font-weight:600;color:#1e293b;margin-bottom:20px;line-height:1.6">${escHtml(q.text)}</p>
+          <div id="answer-area">${renderAnswerArea(q,currentQ,answers)}</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:24px">
+          <button class="btn-secondary" ${currentQ===0?'disabled':''} onclick="navQuestion(${currentQ-1})">← Sebelumnya</button>
+          <button class="btn-primary" ${currentQ===questions.length-1?'disabled':''} onclick="navQuestion(${currentQ+1})">Selanjutnya →</button>
+        </div>
+      </div>
+      <aside style="width:200px;background:#fff;border-left:1px solid #e2e8f0;padding:16px;overflow-y:auto">
+        <h4 style="font-size:13px;font-weight:700;color:#475569;margin-bottom:12px">Navigasi Soal</h4>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+          ${questions.map((qq,i)=>`
+            <div class="question-nav-btn ${answers[i]!==null?'answered':''} ${i===currentQ?'current':''}" onclick="navQuestion(${i})">${i+1}</div>
+          `).join('')}
+        </div>
+        <div style="margin-top:16px;font-size:11px;color:#94a3b8">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px"><div style="width:12px;height:12px;border-radius:3px;background:#2563eb"></div> Terjawab</div>
+          <div style="display:flex;align-items:center;gap:4px"><div style="width:12px;height:12px;border-radius:3px;background:#fff;border:1.5px solid #e2e8f0"></div> Belum</div>
+        </div>
+      </aside>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function renderAnswerArea(q,qIdx,answers){
+  const current = answers[qIdx];
+  if(q.type==='pg'){
+    const labels=['A','B','C','D'];
+    return q.options.map((o,i)=>`
+      <div class="exam-option ${current==i?'selected':''}" onclick="setAnswer(${qIdx},${i})" style="margin-bottom:8px">
+        <span style="font-weight:700;margin-right:8px">${labels[i]}.</span> ${escHtml(o)}
+      </div>
+    `).join('');
+  } else if(q.type==='pgk'){
+    const labels=['A','B','C','D'];
+    const selected = current ? current.split(',') : [];
+    return q.options.map((o,i)=>`
+      <div class="exam-option ${selected.includes(''+i)?'selected':''}" onclick="togglePGKAnswer(${qIdx},${i})" style="margin-bottom:8px">
+        <span style="font-weight:700;margin-right:8px">${labels[i]}.</span> ${escHtml(o)}
+        <span style="float:right">${selected.includes(''+i)?'✓':''}</span>
+      </div>
+    `).join('');
+  } else if(q.type==='bs'){
+    return `
+      <div class="exam-option ${current==='benar'?'selected':''}" onclick="setAnswer(${qIdx},'benar')" style="margin-bottom:8px">
+        <span style="font-weight:700">✓ Benar</span>
+      </div>
+      <div class="exam-option ${current==='salah'?'selected':''}" onclick="setAnswer(${qIdx},'salah')" style="margin-bottom:8px">
+        <span style="font-weight:700">✕ Salah</span>
+      </div>
+    `;
+  } else if(q.type==='jodoh'){
+    const pairs = q.pairs||[];
+    const currentMap = current ? JSON.parse(current) : {};
+    const rights = pairs.map(p=>p.right);
+    return `<p style="font-size:13px;color:#64748b;margin-bottom:12px">Pilih jawaban yang tepat untuk setiap item:</p>
+    ${pairs.map((p,i)=>`
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <div style="flex:1;background:#f1f5f9;padding:10px 14px;border-radius:8px;font-weight:600;font-size:14px">${escHtml(p.left)}</div>
+        <span style="color:#94a3b8">→</span>
+        <select class="input-field" style="flex:1" onchange="setMatchAnswer(${qIdx},${i},this.value)">
+          <option value="">Pilih...</option>
+          ${rights.map(r=>`<option value="${escHtml(r)}" ${currentMap[i]===r?'selected':''}>${escHtml(r)}</option>`).join('')}
+        </select>
+      </div>
+    `).join('')}`;
+  } else if(q.type==='isian'){
+    return `<input class="input-field" id="input-q${qIdx}" style="font-size:16px;padding:14px" placeholder="Ketik jawabanmu..." value="${escHtml(current||'')}" oninput="setAnswerDirect(${qIdx},this.value)">`;
+  }
+  return '';
+}
+
+function setAnswer(qIdx,val){
+  examState.answers[qIdx]=val;
+  renderExamTaking();
+}
+function setAnswerDirect(qIdx,val){
+  examState.answers[qIdx]=val;
+  const input = document.getElementById(`input-q${qIdx}`);
+  if(input) input.value=val;
+}
+function togglePGKAnswer(qIdx,optIdx){
+  const current = examState.answers[qIdx] ? examState.answers[qIdx].split(',') : [];
+  const idx = current.indexOf(''+optIdx);
+  if(idx>=0) current.splice(idx,1); else current.push(''+optIdx);
+  examState.answers[qIdx]=current.filter(Boolean).join(',')||null;
+  renderExamTaking();
+}
+function setMatchAnswer(qIdx,pairIdx,val){
+  let map = examState.answers[qIdx] ? JSON.parse(examState.answers[qIdx]) : {};
+  map[pairIdx]=val;
+  examState.answers[qIdx]=JSON.stringify(map);
+}
+function navQuestion(idx){
+  if(idx<0||idx>=examState.questions.length)return;
+  examState.currentQ=idx;
+  renderExamTaking();
+}
+function updateTimer(){
+  const el=document.getElementById('exam-timer');
+  if(!el)return;
+  const m=Math.floor(examState.timeLeft/60),s=examState.timeLeft%60;
+  el.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  if(examState.timeLeft<60) el.style.color='#ef4444';
+  const bar=document.getElementById('timer-bar');
+  if(bar) bar.style.width=`${(examState.timeLeft/(examState.exam.duration*60))*100}%`;
+}
+
+function confirmSubmitExam(){
+  const unanswered = examState.answers.filter(a=>a===null).length;
+  showModal(`
+    <h2 style="font-size:18px;font-weight:700;margin-bottom:12px">Selesaikan Ujian?</h2>
+    ${unanswered>0?`<p style="color:#f59e0b;font-size:14px;margin-bottom:8px">⚠️ ${unanswered} soal belum dijawab!</p>`:''}
+    <p style="color:#64748b;font-size:14px;margin-bottom:20px">Ujian yang sudah dikumpulkan tidak dapat diulang.</p>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn-secondary" onclick="closeModal()">Kembali</button>
+      <button class="btn-primary" onclick="submitExam()">Ya, Kumpulkan</button>
+    </div>
+  `);
+}
+
+async function submitExam(){
+  closeModal();
+  if(examState.timer) clearInterval(examState.timer);
+  
+  // Calculate score
+  const {exam,questions,answers}=examState;
+  let correct=0;
+  questions.forEach((q,i)=>{
+    const ans=answers[i];
+    if(q.type==='pg' && ans!==null && ''+ans===''+q.answer) correct++;
+    else if(q.type==='pgk' && ans){
+      const sorted1=ans.split(',').sort().join(',');
+      const sorted2=(q.answer||'').split(',').sort().join(',');
+      if(sorted1===sorted2) correct++;
+    }
+    else if(q.type==='bs' && ans===q.answer) correct++;
+    else if(q.type==='jodoh' && ans){
+      try{
+        const map=JSON.parse(ans);
+        const pairs=q.pairs||[];
+        let allCorrect=true;
+        pairs.forEach((p,pi)=>{if(map[pi]!==p.right) allCorrect=false;});
+        if(allCorrect) correct++;
+      }catch(e){}
+    }
+    else if(q.type==='isian' && ans && ans.trim().toLowerCase()===q.answer.trim().toLowerCase()) correct++;
+  });
+  
+  const totalPoints = questions.length * exam.points_per_question;
+  const score = totalPoints>0 ? Math.round((correct * exam.points_per_question / totalPoints) * 100) : 0;
+  
+  // Update or create result
+  const student = APP.currentUser.data;
+  const existingResult = getByType('result').find(r=>r.nis===student.nis && r.parent_id===exam.parent_id);
+  
+  if(existingResult){
+    await window.dataSdk.update({...existingResult, score, status:'selesai', timestamp:new Date().toISOString(), exam_data:JSON.stringify(answers)});
+  } else {
+    if(APP.allData.length<999){
+      await window.dataSdk.create({
+        type:'result',name:student.name,nis:student.nis,kelas:student.kelas,
+        username:'',subject:exam.subject,exam_title:exam.exam_title,
+        exam_data:JSON.stringify(answers),score,status:'selesai',
+        teacher_name:'',teacher_nip:'',teacher_subjects:'',
+        timestamp:new Date().toISOString(),parent_id:exam.parent_id,
+        duration:Math.round((Date.now()-examState.startTime)/60000),
+        assigned_classes:'',total_questions:questions.length,admin_display_name:'',points_per_question:exam.points_per_question
+      });
+    }
+  }
+  
+  examState=null;
+  
+  // Show result screen
+  const app=document.getElementById('app');
+  app.innerHTML=`
+  <div style="height:100%;display:flex;align-items:center;justify-content:center;background:#f8fafc;padding:20px">
+    <div class="fade-in" style="background:#fff;border-radius:20px;padding:40px;text-align:center;max-width:400px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.06)">
+      <div style="width:80px;height:80px;border-radius:50%;background:${score>=70?'#dcfce7':'#fee2e2'};display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
+        <span style="font-size:32px">${score>=70?'🎉':'📝'}</span>
+      </div>
+      <h1 style="font-size:28px;font-weight:800;color:#1e293b;margin-bottom:4px">${score}</h1>
+      <p style="font-size:14px;color:#64748b;margin-bottom:4px">dari 100 poin</p>
+      <p style="font-size:15px;font-weight:600;color:${score>=70?'#16a34a':'#ef4444'};margin-bottom:20px">${score>=70?'Lulus! Kerja Bagus! 👏':'Belum Lulus. Tetap Semangat! 💪'}</p>
+      <p style="font-size:13px;color:#94a3b8;margin-bottom:20px">${correct}/${questions.length} jawaban benar</p>
+      <button class="btn-primary" style="width:100%" onclick="APP.currentPage='student-exams';renderApp()">Kembali ke Beranda</button>
+    </div>
+  </div>`;
+}
+
+// ===== TEACHER APP =====
+function renderTeacherApp(){
+  const app = document.getElementById('app');
+  const teacher = APP.currentUser.data;
+  const teacherSubjects = (teacher.teacher_subjects||'').split(',').filter(Boolean);
+  const exams = getByType('exam').filter(e=>teacherSubjects.includes(e.subject));
+  const results = getByType('result').filter(r=>teacherSubjects.includes(r.subject));
+  const activeResults = results.filter(r=>r.status==='mengerjakan');
+  const completedResults = results.filter(r=>r.status==='selesai');
+  
+  app.innerHTML=`
+  <div style="height:100%;display:flex;flex-direction:column">
+    <header style="background:#fff;border-bottom:1px solid #e2e8f0;padding:16px 24px;display:flex;justify-content:space-between;align-items:center">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#9333ea);display:flex;align-items:center;justify-content:center">
+          <i data-lucide="user-check" style="width:20px;height:20px;color:#fff"></i>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:#1e293b">${escHtml(teacher.teacher_name)}</div>
+          <div style="font-size:12px;color:#64748b">${teacherSubjects.join(', ')||'Belum ada mapel'}</div>
+        </div>
+      </div>
+      <button class="btn-secondary" onclick="renderLogin()"><i data-lucide="log-out" style="width:14px;height:14px;display:inline;vertical-align:middle"></i> Keluar</button>
+    </header>
+    <main style="flex:1;overflow-y:auto;padding:24px;background:#f8fafc">
+      <div class="fade-in">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:24px">
+          ${statCard('file-text','Ujian',exams.length,'#2563eb','#dbeafe')}
+          ${statCard('loader','Sedang Ujian',activeResults.length,'#f59e0b','#fef9c3')}
+          ${statCard('check-circle','Selesai',completedResults.length,'#16a34a','#dcfce7')}
+        </div>
+        
+        ${activeResults.length>0?`
+        <h3 style="font-size:16px;font-weight:700;color:#1e293b;margin-bottom:12px">🔴 Siswa Sedang Mengerjakan</h3>
+        <div style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow-x:auto;margin-bottom:24px">
+          <table>
+            <thead><tr><th>Siswa</th><th>Kelas</th><th>Ujian</th><th>Status</th></tr></thead>
+            <tbody>${activeResults.map(r=>`
+              <tr>
+                <td style="font-weight:600">${escHtml(r.name)}</td>
+                <td><span class="badge badge-blue">${escHtml(r.kelas)}</span></td>
+                <td>${escHtml(r.exam_title)}</td>
+                <td><span class="badge badge-yellow"><span class="status-dot" style="background:#f59e0b;margin-right:4px"></span>Mengerjakan</span></td>
+              </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>`:''}
+        
+        <h3 style="font-size:16px;font-weight:700;color:#1e293b;margin-bottom:12px">📊 Hasil Ujian</h3>
+        <div style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow-x:auto">
+          <table>
+            <thead><tr><th>Siswa</th><th>Kelas</th><th>Ujian</th><th>Skor</th><th>Status</th></tr></thead>
+            <tbody>
+              ${completedResults.length===0?`<tr><td colspan="5" style="text-align:center;color:#94a3b8;padding:40px">Belum ada hasil</td></tr>`:''}
+              ${completedResults.map(r=>`
+              <tr>
+                <td style="font-weight:600">${escHtml(r.name)}</td>
+                <td><span class="badge badge-blue">${escHtml(r.kelas)}</span></td>
+                <td>${escHtml(r.exam_title)}</td>
+                <td><span style="font-weight:700;color:${r.score>=70?'#16a34a':'#ef4444'}">${r.score}</span></td>
+                <td><span class="badge badge-green">Selesai</span></td>
+              </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>`;
+  lucide.createIcons();
+}
+
+// ===== MODAL =====
+function showModal(html,maxW=500){
+  let overlay=document.getElementById('modal-overlay');
+  if(!overlay){
+    overlay=document.createElement('div');
+    overlay.id='modal-overlay';
+    overlay.className='modal-overlay';
+    document.body.appendChild(overlay);
+  }
+  overlay.innerHTML=`<div class="modal-box fade-in" style="max-width:${maxW}px">${html}</div>`;
+  overlay.style.display='flex';
+  overlay.onclick=e=>{if(e.target===overlay)closeModal()};
+  lucide.createIcons();
+}
+function closeModal(){
+  const o=document.getElementById('modal-overlay');
+  if(o){o.style.display='none';o.innerHTML='';}
+}
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fb138e7e2d53e25',t:'MTc3ODY3MDY4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
